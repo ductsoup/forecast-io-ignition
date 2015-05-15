@@ -41,3 +41,4 @@ This is a complicated payload. With Ignition running on a well provisioned Ubunt
 
 For reasons of sanity all derived tag names begin with an underscore so it's easy to distinguish what came from the API and what's been coalesed. One of the challenges is Ignition prefers a reliable, defined set of tags and nearly all of the forecast.io API is optional. For any given location the API seems to be pretty consistent in the information it provides. If you're going to be sweeping the location all across the globe you'll definitely need to work more robust exception handling into the derived tags.
 
+I've been testing this code for a couple days and it seems reliable with the possible exception of the alert tags.  The weather here has been mild so for testing purposes I've been changing the lat/lon and chasing storms all over North America. There may be some refinements to that little piece later.
