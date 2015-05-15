@@ -34,9 +34,12 @@ If all went well you should see something like this in your tag browser.
 
 ![ScreenShot5](/images/ScreenShot5.jpg)
 
-##Time Series Example
+##Time Series Usage Example
+For convenience each time series is isolated then joined into a delimited string tag. To use the data retrieve the string and use the split method.
 
-![ScreenShot5](/images/ScreenShot6.jpg)
+In this example I've got a chart object and the script below attached to a button event. 
+
+![ScreenShot6](/images/ScreenShot6.jpg)
 
 ```
 from java.util import Date
@@ -61,5 +64,7 @@ It's been a while since I've worked with Python. It came back quickly but I'm su
 This is a complicated payload. With Ignition running on a well provisioned Ubuntu virtual host it's taking 400 to 800ms to run. But, since we're only executing it every two minutes we're not going to sink a ship or anything. The first run is the worst since the gateway has to create all the tags. From there we update and only remove and recreate those tags that are potentially stale and misleading like NOAA alerts.
 
 For reasons of sanity all derived tag names begin with an underscore so it's easy to distinguish what came from the API and what's been coalesed. One of the challenges is Ignition prefers a reliable, defined set of tags and nearly all of the forecast.io API is optional. For any given location the API seems to be pretty consistent in the information it provides. If you're going to be sweeping the location all across the globe you'll definitely need to work more robust exception handling into the derived tags.
+
+For the derived time series tags other encodings such as JSON are certainly possible. I opted for a string of delimited values because it's simple and, it's easier to understand the values if you're just browsing the tags. The trade off is you have to build the dictionary object in the client but that only takes a couple lines. If you know in advance exactly which series you're going to use, building the dictionary in the gateway script and storing it as a JSON tag would be the better way to go.
 
 I've been testing this code for a couple days and it seems reliable with the possible exception of the alert tags.  The weather here has been mild so for testing purposes I've been changing the lat/lon and chasing storms all over North America. There may be some refinements to that little piece later.
