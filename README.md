@@ -34,6 +34,27 @@ If all went well you should see something like this in your tag browser.
 
 ![ScreenShot5](/images/ScreenShot5.jpg)
 
+##Time Series Example
+
+![ScreenShot5](/images/ScreenShot6.jpg)
+
+```
+from java.util import Date
+y = system.tag.read("forecast_io/hourly/data/_time").value.split(",")
+x1 = system.tag.read("forecast_io/hourly/data/_ozone").value.split(",")
+x2 = system.tag.read("forecast_io/hourly/data/_pressure").value.split(",")
+row1 = []
+row2 = []
+for i, v in enumerate(y):	
+	row1.append([Date(1000*int(y[i])), float(x1[i])])
+	row2.append([Date(1000*int(y[i])), float(x2[i])])
+data1 = system.dataset.toDataSet(["t_stamp", "Ozone"], row1)	
+data2 = system.dataset.toDataSet(["t_stamp", "Pressure"], row2)	
+event.source.parent.getComponent("Chart").Data1 = data1
+event.source.parent.getComponent("Chart").Data2 = data2
+#system.gui.messageBox("The value is %s" % rows)
+```
+
 ## Design Notes
 It's been a while since I've worked with Python. It came back quickly but I'm sure some of the for loops could be streamlined. There's no major performance issue here, more just coding style.
 
