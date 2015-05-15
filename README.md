@@ -9,7 +9,7 @@ This example recursively maps the entire API payload for a given location along 
 json = system.net.httpGet("https://api.forecast.io/forecast/" + APIKey + "/" + LatLon)
 res = system.util.jsonDecode(json)
 ```
-From there it's a relatively simple matter to traverse the directory, recreate the payload's structure and bind the data to a collection of Ignition memory tags. The script is called from a gateway timer event to refresh the tags periodically.
+From there it's a relatively simple matter to traverse the directory, recreate the payload's structure and bind the data to a collection of memory tags. The script is called from a gateway timer event to refresh the tags periodically.
 
 ## Installation
 First you'll need an installed copy of Ignition. Either the demo or licensed version will work just fine. The other thing you need is an API key. You can obtain one from [https://developer.forecast.io](https://developer.forecast.io). 
